@@ -217,6 +217,13 @@ main, footer { position: relative; z-index: 1; }
   opacity: 1;
 }
 
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 /* --- Layout helper (legal pages) --- */
 .container {
   width: 100%;
