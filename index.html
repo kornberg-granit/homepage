@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<canvas id="particle-canvas"></canvas>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
 
 <main style="flex:1;display:flex;flex-direction:column">
 
@@ -28,7 +28,8 @@
       alt="Granitblock bei der Vermessung im Steinbruch"
       width="720"
       height="450"
-      loading="eager">
+      loading="eager"
+      fetchpriority="high">
   </div>
 
   <section class="contact" aria-labelledby="contact-heading">
@@ -53,7 +54,7 @@
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <span>&copy; <span id="footer-year"></span> Kornberg Granit</span>
   <nav aria-label="Rechtliches">
     <a href="impressum.html">Impressum</a>
@@ -146,7 +147,11 @@
     requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', function () { resize(); init(); });
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { resize(); init(); }, 150);
+  });
   resize();
   init();
   draw();
