@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -114,6 +115,7 @@
         var link = document.createElement('a');
         link.href = 'mailto:' + email;
         link.textContent = email;
+        link.className = 'email-link';
         link.setAttribute('aria-label', 'E-Mail an Kornberg Granit senden');
         container.appendChild(link);
       }
