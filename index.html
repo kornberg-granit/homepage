@@ -3,117 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kornberg Granit – Kontaktanfragen per E-Mail.">
+  <meta name="description" content="Kornberg Granit – Naturstein aus dem Fichtelgebirge.">
   <title>Kornberg Granit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="site-header" role="banner">
-    <div class="container">
-      <a href="index.html" class="site-header__name" aria-label="Kornberg Granit – Startseite">Kornberg Granit</a>
-    </div>
-  </header>
+<canvas id="particle-canvas"></canvas>
 
-  <main id="main-content">
+<main style="flex:1;display:flex;flex-direction:column">
 
-    <!-- Hero -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="container">
-        <h1 id="hero-heading">Kornberg Granit</h1>
-        <p class="hero__tagline">Kontaktanfragen bitte per E-Mail.</p>
-      </div>
-    </section>
+  <section class="hero" aria-labelledby="hero-heading">
+    <p class="hero__eyebrow">Naturstein aus dem Fichtelgebirge</p>
+    <h1 class="hero__h1" id="hero-heading">Kornberg<br>Granit</h1>
+  </section>
 
-    <!-- Image Gallery -->
-    <section class="gallery" aria-label="Impressionen">
-      <div class="container">
-        <div class="gallery__grid">
-          <img
-            src="kornberg_hell.jpg"
-            alt="Heller Kornberg-Granit – gleichmäßige helle Körnung"
-            width="600"
-            height="450"
-            loading="eager">
-          <img
-            src="kornberg_gelb.jpg"
-            alt="Gelblicher Kornberg-Granit – warmer, goldener Farbton"
-            width="600"
-            height="450"
-            loading="lazy">
-          <img
-            src="Blockvermessung.jpg"
-            alt="Granitblock bei der Vermessung im Steinbruch"
-            width="600"
-            height="450"
-            loading="lazy">
-        </div>
-      </div>
-    </section>
+  <div class="hero-image">
+    <img
+      src="Blockvermessung.jpg"
+      alt="Granitblock bei der Vermessung im Steinbruch"
+      width="720"
+      height="450"
+      loading="eager">
+  </div>
 
-    <!-- Contact -->
-    <section class="contact" aria-labelledby="contact-heading">
-      <div class="container">
-        <h2 class="contact__label" id="contact-heading">Kontakt</h2>
+  <section class="contact" aria-labelledby="contact-heading">
+    <h2 class="contact__heading" id="contact-heading">Sprechen Sie<br>uns an.</h2>
+    <div class="contact__divider"></div>
 
-        <!-- Email injected here by JavaScript (see inline script below) -->
-        <div id="email-container" aria-live="polite"></div>
+    <!-- Email injected here by JavaScript (see inline script below) -->
+    <div id="email-container" aria-live="polite"></div>
 
-        <!-- Fallback for users without JavaScript -->
-        <noscript>
-          <p class="noscript-email">
-            info [at] kornberg-granit [punkt] de
-          </p>
-        </noscript>
+    <!-- Fallback for users without JavaScript -->
+    <noscript>
+      <p class="noscript-email">
+        info [at] kornberg-granit [punkt] de
+      </p>
+    </noscript>
 
-        <!-- Honeypot: only visible to bots, ignored by real users -->
-        <span class="hp-trap" aria-hidden="true" tabindex="-1">
-          do-not-contact@example.invalid
-        </span>
+    <!-- Honeypot: only visible to bots, ignored by real users -->
+    <span class="hp-trap" aria-hidden="true" tabindex="-1">
+      do-not-contact@example.invalid
+    </span>
+  </section>
 
-      </div>
-    </section>
+</main>
 
-  </main>
+<footer class="site-footer" role="contentinfo">
+  <span>&copy; <span id="footer-year"></span> Kornberg Granit</span>
+  <nav aria-label="Rechtliches">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </nav>
+</footer>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <span>&copy; <span id="footer-year"></span> Kornberg Granit</span>
-      <nav aria-label="Rechtliches">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </nav>
-    </div>
-  </footer>
+<script>
+(function () {
+  // ── Email spam protection ──────────────────────────────────────────────────
+  // The address is Base64-encoded; never present as cleartext in this file.
+  var encoded = 'aW5mb0Brb3JuYmVyZy1ncmFuaXQuZGU=';
+  var email = atob(encoded);
 
-  <script>
-    // Email spam protection:
-    // The address is Base64-encoded. It is never present as cleartext in this file.
-    (function () {
-      var encoded = 'aW5mb0Brb3JuYmVyZy1ncmFuaXQuZGU=';
-      var email = atob(encoded);
+  var container = document.getElementById('email-container');
+  if (container) {
+    var link = document.createElement('a');
+    link.href = 'mailto:' + email;
+    link.textContent = email;
+    link.className = 'email-link';
+    link.setAttribute('aria-label', 'E-Mail an Kornberg Granit senden');
+    container.appendChild(link);
+  }
 
-      var container = document.getElementById('email-container');
-      if (container) {
-        var link = document.createElement('a');
-        link.href = 'mailto:' + email;
-        link.textContent = email;
-        link.className = 'email-link';
-        link.setAttribute('aria-label', 'E-Mail an Kornberg Granit senden');
-        container.appendChild(link);
+  // ── Dynamic copyright year ─────────────────────────────────────────────────
+  var yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  // ── Particle animation ─────────────────────────────────────────────────────
+  var canvas = document.getElementById('particle-canvas');
+  var ctx    = canvas.getContext('2d');
+  var W, H, particles = [];
+  var COUNT = 65, MAX_DIST = 155, SPEED = 0.35;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = Math.max(window.innerHeight, document.body.scrollHeight);
+  }
+
+  function Particle() {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * SPEED * 2;
+    this.vy = (Math.random() - 0.5) * SPEED * 2;
+    this.r  = Math.random() * 1.2 + 0.6;
+  }
+
+  Particle.prototype.update = function () {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > W) this.vx *= -1;
+    if (this.y < 0 || this.y > H) this.vy *= -1;
+  };
+
+  function init() {
+    particles = [];
+    for (var i = 0; i < COUNT; i++) particles.push(new Particle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(function (p) { p.update(); });
+
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < MAX_DIST) {
+          var a = (1 - d / MAX_DIST) * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(180,172,160,' + a + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
       }
+    }
 
-      // Dynamic copyright year
-      var yearEl = document.getElementById('footer-year');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
-    }());
-  </script>
+    particles.forEach(function (p) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(170,162,150,0.5)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', function () { resize(); init(); });
+  resize();
+  init();
+  draw();
+}());
+</script>
 
 </body>
 </html>
