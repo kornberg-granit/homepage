@@ -28,7 +28,7 @@
   --color-bg:     var(--white);
   --color-text:   var(--ink);
   --color-muted:  var(--mid);
-  --color-border: var(--faint);
+  --color-border: var(--border);
   --color-link:   var(--ink);
   --font-family:  var(--sans);
   --max-width:    900px;
