@@ -12,17 +12,30 @@
 
 /* --- Custom Properties --- */
 :root {
-  --color-bg:      #f5f3f0;
-  --color-text:    #2a2a2a;
-  --color-muted:   #7a7a7a;
-  --color-border:  #d8d4cf;
-  --color-link:    #2a2a2a;
-  --font-family:   'Inter', system-ui, -apple-system, sans-serif;
-  --max-width:     900px;
-  --spacing-xs:    0.5rem;
-  --spacing-sm:    1rem;
-  --spacing-md:    2rem;
-  --spacing-lg:    4rem;
+  /* Design tokens */
+  --white:   #ffffff;
+  --ink:     #0f0f0f;
+  --mid:     #888888;
+  --faint:   #c8c8c8;
+  --border:  rgba(0,0,0,0.06);
+
+  /* Typefaces */
+  --serif:   'DM Serif Display', Georgia, serif;
+  --display: 'Cormorant Garamond', Georgia, serif;
+  --sans:    'Inter', system-ui, sans-serif;
+
+  /* Legacy aliases — legal pages rely on these names */
+  --color-bg:     var(--white);
+  --color-text:   var(--ink);
+  --color-muted:  var(--mid);
+  --color-border: var(--faint);
+  --color-link:   var(--ink);
+  --font-family:  var(--sans);
+  --max-width:    900px;
+  --spacing-xs:   0.5rem;
+  --spacing-sm:   1rem;
+  --spacing-md:   2rem;
+  --spacing-lg:   4rem;
 }
 
 /* --- Base --- */
@@ -32,38 +45,20 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-family);
-  font-weight: 400;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --- Typography --- */
-h1 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-}
-
-h2 {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-p {
-  color: var(--color-muted);
-  font-size: 1rem;
-  font-weight: 300;
-}
-
+/* --- Links --- */
 a {
-  color: var(--color-link);
+  color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -73,13 +68,156 @@ a:hover {
 }
 
 a:focus-visible {
-  opacity: 0.7;
-  outline: 2px solid var(--color-text);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* --- Layout --- */
+/* --- Particle Canvas --- */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main, footer { position: relative; z-index: 1; }
+
+/* --- Hero --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10rem 2rem 4rem;
+}
+
+.hero__eyebrow {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 2.25rem;
+}
+
+.hero__h1 {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 13vw, 9rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* --- Hero Image --- */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  padding: 5.5rem 2rem 0;
+}
+
+.hero-image img {
+  width: min(720px, 88vw);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.10);
+}
+
+/* --- Contact --- */
+.contact {
+  padding: 9rem 2rem 8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact__heading {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  margin-bottom: 2.25rem;
+}
+
+.contact__divider {
+  width: 32px;
+  height: 1px;
+  background: var(--faint);
+  margin-bottom: 2.25rem;
+}
+
+/* --- Email Link --- */
+.email-link {
+  font-family: var(--sans);
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faint);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.email-link:hover,
+.email-link:focus-visible {
+  opacity: 1;
+  color: var(--ink);
+  border-color: var(--ink);
+  outline: none;
+}
+
+.noscript-email {
+  font-size: 1rem;
+  color: var(--mid);
+}
+
+/* --- Honeypot (invisible to humans, visible to bots) --- */
+.hp-trap {
+  display: none !important;
+  visibility: hidden;
+}
+
+/* --- Footer --- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.625rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+  margin-top: auto;
+}
+
+.site-footer nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.site-footer a {
+  color: var(--faint);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  opacity: 1;
+}
+
+/* --- Layout helper (legal pages) --- */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -87,11 +225,7 @@ a:focus-visible {
   padding-inline: var(--spacing-sm);
 }
 
-main {
-  flex: 1;
-}
-
-/* --- Header --- */
+/* --- Header (legal pages only) --- */
 .site-header {
   border-bottom: 1px solid var(--color-border);
   padding-block: var(--spacing-sm);
@@ -109,134 +243,27 @@ main {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--ink);
 }
 
 .site-header__name:hover {
   opacity: 0.7;
 }
 
-/* --- Hero Section --- */
-.hero {
-  padding-block: var(--spacing-lg);
-  text-align: center;
-}
-
-.hero__tagline {
-  margin-top: var(--spacing-sm);
-  font-size: 1.125rem;
-}
-
-/* --- Gallery Section --- */
-.gallery {
-  padding-block: var(--spacing-md);
-}
-
-.gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xs);
-}
-
-.gallery__grid img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-}
-
-@media (max-width: 600px) {
-  .gallery__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --- Contact Section --- */
-.contact {
-  padding-block: var(--spacing-lg);
-  text-align: center;
-  border-top: 1px solid var(--color-border);
-}
-
-.contact__label {
-  font-size: 0.8125rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-sm);
-}
-
-.email-link {
-  font-size: clamp(1rem, 2.5vw, 1.375rem);
-  font-weight: 400;
-  color: var(--color-text);
-  text-decoration: none;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease;
-}
-
-.email-link:hover,
-.email-link:focus-visible {
-  opacity: 1;
-  border-color: var(--color-text);
-}
-
-.noscript-email {
-  font-size: 1rem;
-  color: var(--color-muted);
-}
-
-/* --- Honeypot (invisible to humans, visible to bots) --- */
-.hp-trap {
-  display: none !important;
-  visibility: hidden;
-}
-
-/* --- Footer --- */
-.site-footer {
-  border-top: 1px solid var(--color-border);
-  padding-block: var(--spacing-md);
-  margin-top: auto;
-}
-
-.site-footer .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
-  font-size: 0.8125rem;
-  color: var(--color-muted);
-}
-
-.site-footer nav {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.site-footer a {
-  color: var(--color-muted);
-  text-decoration: none;
-  font-size: 0.8125rem;
-}
-
-.site-footer a:hover {
-  color: var(--color-text);
-  opacity: 1;
-}
-
-/* --- Legal Pages (impressum, datenschutz) --- */
+/* --- Legal Pages --- */
 .legal {
   padding-block: var(--spacing-lg);
 }
 
 .legal h1 {
+  font-family: var(--sans);
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 400;
   margin-bottom: var(--spacing-md);
 }
 
 .legal h2 {
+  font-family: var(--sans);
   font-size: 1.0625rem;
   font-weight: 600;
   margin-top: var(--spacing-md);
@@ -246,7 +273,7 @@ main {
 
 .legal p,
 .legal li {
-  color: var(--color-text);
+  color: var(--ink);
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.75;
@@ -279,5 +306,5 @@ main {
   padding: var(--spacing-sm);
   border-left: 3px solid var(--color-border);
   font-size: 0.875rem;
-  color: var(--color-muted);
+  color: var(--mid);
 }
