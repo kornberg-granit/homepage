@@ -1,0 +1,284 @@
+/* style.css */
+/* =========================================================
+   Kornberg Granit — Shared Stylesheet
+   ========================================================= */
+
+/* --- Reset & Box Model --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Custom Properties --- */
+:root {
+  --color-bg:      #f5f3f0;
+  --color-text:    #2a2a2a;
+  --color-muted:   #7a7a7a;
+  --color-border:  #d8d4cf;
+  --color-link:    #2a2a2a;
+  --font-family:   'Inter', system-ui, -apple-system, sans-serif;
+  --max-width:     900px;
+  --spacing-xs:    0.5rem;
+  --spacing-sm:    1rem;
+  --spacing-md:    2rem;
+  --spacing-lg:    4rem;
+}
+
+/* --- Base --- */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Typography --- */
+h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+p {
+  color: var(--color-muted);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  opacity: 0.7;
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Layout --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-sm);
+}
+
+main {
+  flex: 1;
+}
+
+/* --- Header --- */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--spacing-sm);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.site-header__name:hover {
+  opacity: 0.7;
+}
+
+/* --- Hero Section --- */
+.hero {
+  padding-block: var(--spacing-lg);
+  text-align: center;
+}
+
+.hero__tagline {
+  margin-top: var(--spacing-sm);
+  font-size: 1.125rem;
+}
+
+/* --- Gallery Section --- */
+.gallery {
+  padding-block: var(--spacing-md);
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.gallery__grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Contact Section --- */
+.contact {
+  padding-block: var(--spacing-lg);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact__label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+
+.email-link {
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 400;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.email-link:hover,
+.email-link:focus-visible {
+  opacity: 1;
+  border-color: var(--color-text);
+}
+
+.noscript-email {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* --- Honeypot (invisible to humans, visible to bots) --- */
+.hp-trap {
+  display: none !important;
+  visibility: hidden;
+}
+
+/* --- Footer --- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--spacing-md);
+  margin-top: auto;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+.site-footer nav {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.site-footer a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.8125rem;
+}
+
+.site-footer a:hover {
+  color: var(--color-text);
+  opacity: 1;
+}
+
+/* --- Legal Pages (impressum, datenschutz) --- */
+.legal {
+  padding-block: var(--spacing-lg);
+}
+
+.legal h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+}
+
+.legal h2 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.01em;
+}
+
+.legal p,
+.legal li {
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.legal li + li {
+  margin-top: 0.25rem;
+}
+
+.legal p + p {
+  margin-top: var(--spacing-xs);
+}
+
+.legal__placeholder {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-style: italic;
+}
+
+.legal__notice {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  border-left: 3px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
