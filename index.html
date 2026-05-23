@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kornberg Granit – Kontaktanfragen per E-Mail.">
+  <title>Kornberg Granit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-header__name" aria-label="Kornberg Granit – Startseite">Kornberg Granit</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <h1 id="hero-heading">Kornberg Granit</h1>
+        <p class="hero__tagline">Kontaktanfragen bitte per E-Mail.</p>
+      </div>
+    </section>
+
+    <!-- Image Gallery -->
+    <section class="gallery" aria-label="Impressionen">
+      <div class="container">
+        <div class="gallery__grid">
+          <img
+            src="kornberg_hell.jpg"
+            alt="Heller Kornberg-Granit – gleichmäßige helle Körnung"
+            width="600"
+            height="450"
+            loading="lazy">
+          <img
+            src="kornberg_gelb.jpg"
+            alt="Gelblicher Kornberg-Granit – warmer, goldener Farbton"
+            width="600"
+            height="450"
+            loading="lazy">
+          <img
+            src="Blockvermessung.jpg"
+            alt="Granitblock bei der Vermessung im Steinbruch"
+            width="600"
+            height="450"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <p class="contact__label" id="contact-heading">Kontakt</p>
+
+        <!-- Email injected here by JavaScript (see inline script below) -->
+        <div id="email-container" aria-live="polite"></div>
+
+        <!-- Fallback for users without JavaScript -->
+        <noscript>
+          <p class="noscript-email">
+            info [at] kornberg-granit [punkt] de
+          </p>
+        </noscript>
+
+        <!-- Honeypot: only visible to bots, ignored by real users -->
+        <span class="hp-trap" aria-hidden="true" tabindex="-1">
+          do-not-contact@example.invalid
+        </span>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <span>&copy; <span id="footer-year"></span> Kornberg Granit</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Email spam protection:
+    // The address is Base64-encoded. It is never present as cleartext in this file.
+    // Encoded value: btoa("info@kornberg-granit.de")
+    (function () {
+      var encoded = 'aW5mb0Brb3JuYmVyZy1ncmFuaXQuZGU=';
+      var email = atob(encoded);
+
+      var container = document.getElementById('email-container');
+      if (container) {
+        var link = document.createElement('a');
+        link.href = 'mailto:' + email;
+        link.textContent = email;
+        link.className = 'email-link';
+        link.setAttribute('aria-label', 'E-Mail an Kornberg Granit senden');
+        container.appendChild(link);
+      }
+
+      // Dynamic copyright year
+      var yearEl = document.getElementById('footer-year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    }());
+  </script>
+
+</body>
+</html>
