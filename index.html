@@ -101,18 +101,14 @@
   <section class="contact" aria-labelledby="contact-heading">
     <h2 class="contact__heading" id="contact-heading">Sprechen Sie<br>uns an.</h2>
 
-
-    <!-- Email injected here by JavaScript (see inline script below) -->
     <div id="email-container" aria-live="polite"></div>
 
-    <!-- Fallback for users without JavaScript -->
     <noscript>
       <p class="noscript-email">
-        info [at] kornberg-granit [punkt] de
+        info -at- kornberg-granit -punkt- de
       </p>
     </noscript>
 
-    <!-- Honeypot: only visible to bots, ignored by real users -->
     <span class="hp-trap" aria-hidden="true" tabindex="-1">
       do-not-contact@example.invalid
     </span>
@@ -130,8 +126,6 @@
 
 <script>
 (function () {
-  // ── Email spam protection ──────────────────────────────────────────────────
-  // The address is Base64-encoded; never present as cleartext in this file.
   var encoded = 'aW5mb0Brb3JuYmVyZy1ncmFuaXQuZGU=';
   var email = atob(encoded);
 
@@ -145,13 +139,11 @@
     container.appendChild(link);
   }
 
-  // ── Dynamic copyright year ─────────────────────────────────────────────────
   var yearEl = document.getElementById('footer-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // ── Image slider ──────────────────────────────────────────────────────────
   var slides = document.querySelectorAll('.hero-slider__slide');
   var dots   = document.querySelectorAll('.hero-slider__dot');
   if (slides.length) {
@@ -188,7 +180,6 @@
     startTimer();
   }
 
-  // ── Particle animation ─────────────────────────────────────────────────────
   var canvas = document.getElementById('particle-canvas');
   var ctx    = canvas.getContext('2d');
   var W, H, particles = [];
