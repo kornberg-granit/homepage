@@ -19,14 +19,35 @@
     <h1 class="hero__h1" id="hero-heading">Kornberg<br>Granit</h1>
   </section>
 
-  <div class="hero-image">
-    <img
-      src="Blockvermessung.jpg"
-      alt="Granitblock bei der Vermessung im Steinbruch"
-      width="720"
-      height="450"
-      loading="eager"
-      fetchpriority="high">
+  <div class="hero-slider" aria-label="Bildergalerie">
+    <div class="hero-slider__track">
+      <img
+        src="Blockvermessung.jpg"
+        alt="Granitblock bei der Vermessung im Steinbruch"
+        class="hero-slider__slide hero-slider__slide--active"
+        width="720" height="450"
+        loading="eager" fetchpriority="high">
+      <img
+        src="kornberg_hell.jpg"
+        alt="Kornberg Granit – helle Steinoberfläche"
+        class="hero-slider__slide"
+        width="720" height="450"
+        loading="lazy">
+      <img
+        src="kornberg_gelb.jpg"
+        alt="Kornberg Granit – gelbliche Steinoberfläche"
+        class="hero-slider__slide"
+        width="720" height="450"
+        loading="lazy">
+    </div>
+    <div class="hero-slider__dots" role="tablist" aria-label="Bild wählen">
+      <button class="hero-slider__dot hero-slider__dot--active"
+              role="tab" aria-selected="true" aria-label="Bild 1" data-index="0"></button>
+      <button class="hero-slider__dot"
+              role="tab" aria-selected="false" aria-label="Bild 2" data-index="1"></button>
+      <button class="hero-slider__dot"
+              role="tab" aria-selected="false" aria-label="Bild 3" data-index="2"></button>
+    </div>
   </div>
 
   <section class="contact" aria-labelledby="contact-heading">
