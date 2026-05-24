@@ -25,28 +25,31 @@
         src="Blockvermessung.jpg"
         alt="Granitblock bei der Vermessung im Steinbruch"
         class="hero-slider__slide hero-slider__slide--active"
+        aria-hidden="false"
         width="720" height="450"
         loading="eager" fetchpriority="high">
       <img
         src="kornberg_hell.jpg"
         alt="Kornberg Granit – helle Steinoberfläche"
         class="hero-slider__slide"
+        aria-hidden="true"
         width="720" height="450"
         loading="lazy">
       <img
         src="kornberg_gelb.jpg"
         alt="Kornberg Granit – gelbliche Steinoberfläche"
         class="hero-slider__slide"
+        aria-hidden="true"
         width="720" height="450"
         loading="lazy">
     </div>
-    <div class="hero-slider__dots" role="tablist" aria-label="Bild wählen">
+    <div class="hero-slider__dots" role="group" aria-label="Bildnavigation">
       <button class="hero-slider__dot hero-slider__dot--active"
-              role="tab" aria-selected="true" aria-label="Bild 1" data-index="0"></button>
+              aria-label="Bild 1" aria-current="true"></button>
       <button class="hero-slider__dot"
-              role="tab" aria-selected="false" aria-label="Bild 2" data-index="1"></button>
+              aria-label="Bild 2" aria-current="false"></button>
       <button class="hero-slider__dot"
-              role="tab" aria-selected="false" aria-label="Bild 3" data-index="2"></button>
+              aria-label="Bild 3" aria-current="false"></button>
     </div>
   </div>
 
@@ -110,10 +113,11 @@
     var goTo = function (index) {
       slides.forEach(function (s, i) {
         s.classList.toggle('hero-slider__slide--active', i === index);
+        s.setAttribute('aria-hidden', i === index ? 'false' : 'true');
       });
       dots.forEach(function (d, i) {
         d.classList.toggle('hero-slider__dot--active', i === index);
-        d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        d.setAttribute('aria-current', i === index ? 'true' : 'false');
       });
     };
     dots.forEach(function (dot, i) {
